@@ -56,14 +56,14 @@ int run_basic_demo(void) {
 		if(WIFEXITED(wstatus))
 			printf("Producer child (PID: %d) exited with status %d\n", wpid, WEXITSTATUS(wstatus));
 		else	
-			printf("Producer chile (PID: %d) exited abnormally\n", wpid);
-	
+			printf("Producer child (PID: %d) exited abnormally\n", wpid);
+	}
 	wpid = waitpid(consumer_pid, &wstatus, 0);
 	if(wpid > 0){
 		if (WIFEXITED(wstatus))
 			printf("Consumer child (PID: %d) exited with status %d\n", wpid, WEXITSTATUS(wstatus));
 		else
-			printf("Producer chile (PID: %d) exited abnormally\n", wpid);
+			printf("Producer child (PID: %d) exited abnormally\n", wpid);
 	}
 
 	printf("\nSUCCESS: Basic producer-consumer completed!\n");
@@ -119,7 +119,7 @@ int run_multiple_pairs(int num_pairs) {
 
 	pids[pid_count++] = prod;
 	pids[pid_count++] = cons;
-
+	}
 
 	int status;
 	for(int i=0; i < pid_count; i++){
@@ -135,8 +135,8 @@ int run_multiple_pairs(int num_pairs) {
 
 
     printf("\nAll pairs completed successfully!\n");
-
-    
+	
+	
     return 0;
 }
 
@@ -184,4 +184,6 @@ void consumer_process(int read_fd, int pair_id) {
     printf("Consumer: Final sum: %d\n", sum);
     close(read_fd);
     exit(0);
+
 }
+
